@@ -1,10 +1,11 @@
 import React from 'react';
+import Navbar from '../Shared/Navbar';
 
 
 const Main = () => {
     return (
         <div>
-            <p className='text-5xl'>Hello </p>
+            <Navbar></Navbar>
         </div>
     );
 };
