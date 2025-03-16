@@ -24,9 +24,6 @@ const Product = () => {
         fetchProducts();
     }, [axiosPublic]);
 
-    // const handleAddToCart = (product) => {
-    //     console.log("Added to cart:", product);
-    // };
 
     if (loading) {
         return (
@@ -68,7 +65,7 @@ const Product = () => {
 
                             <button
                                 className="mt-4 btn w-full bg-orange-500 text-white font-medium py-2 px-4 rounded-lg transition hover:bg-orange-600"
-                                onClick={() => navigate("/add-to-cart", { state: { product } })} 
+                                onClick={() => navigate("/add-to-cart", { state: { product } })}
                             >
                                 Add to Cart
                             </button>

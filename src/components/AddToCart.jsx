@@ -10,24 +10,24 @@ const AddToCart = () => {
 
     if (!product) {
         return (
-            <div className="flex justify-center items-center h-screen">
-                <h2 className="text-2xl font-semibold text-gray-600">
-                    No product added to cart.
-                </h2>
+            <div>
+                <Navbar></Navbar>
+                <div className="flex justify-center items-center h-screen">
+                    <h2 className="text-2xl font-semibold text-gray-600">
+                        No product added to cart.
+                    </h2>
+                </div>
             </div>
         );
     }
 
-    // const handlePurchase = () => {
-    //     console.log("Purchased:", product.product_title, "Quantity:", purchaseQuantity);
-    // };
     const handlePurchase = () => {
-        navigate("/checkout", { 
-            state: { 
-                product, 
-                purchaseQuantity, 
-                totalPrice: product.price * purchaseQuantity 
-            } 
+        navigate("/checkout", {
+            state: {
+                product,
+                purchaseQuantity,
+                totalPrice: product.price * purchaseQuantity
+            }
         });
     };
 

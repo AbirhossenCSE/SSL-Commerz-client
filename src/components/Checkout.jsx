@@ -20,28 +20,7 @@ const Checkout = () => {
         setCustomer({ ...customer, [e.target.name]: e.target.value });
     };
 
-    // const handleConfirmPurchase = () => {
-    //     // console.log("Order Placed 1:", { product, purchaseQuantity, totalPrice, customer });
-    //     const orderData = {
-    //         productId: product._id,
-    //         productName: product.product_title,
-    //         price: product.price,
-    //         purchaseQuantity,
-    //         totalPrice,
-    //         customerName: customer.name,
-    //         customerPhone: customer.phone,
-    //         customerAddress: customer.address,
-    //     };
-    // fetch("http://localhost:5000/order", {
-    //     method: "POST",
-    //     headers: {"content-type": "application/jsom"},
-    //     body: JSON.stringify(orderData)
-    // })
-    // .then((res) => res.json())
-    // .then((result) => {
-    //     console.log(result)
-    // })
-    // };
+
     const handleConfirmPurchase = async () => {
         const orderData = {
             productId: product._id,
@@ -57,12 +36,18 @@ const Checkout = () => {
         try {
             const response = await axiosPublic.post("/order", orderData);
             console.log("Order Successfully:", response.data);
-            alert("Order successfully!");
+            if (response.data.url) {
+                // window.location.herf = response.data.url;
+                window.location.replace(response.data.url)
+            } else {
+                alert("Failed to get payment gateway URL. Please try again later.");
+            }
         } catch (error) {
             console.error("Error:", error);
-            alert("Failed");
+            alert("Order failed. Please check your connection and try again.");
         }
     };
+
 
     return (
         <div>

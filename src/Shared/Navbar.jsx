@@ -1,16 +1,28 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { FaMoon, FaBars, FaTimes } from "react-icons/fa";
 import { FiSun } from "react-icons/fi";
+import AuthContext from "../context/AuthContext";
 
 const Navbar = () => {
     const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const { user, signOutUser } = useContext(AuthContext);
 
     useEffect(() => {
         document.documentElement.setAttribute("data-theme", theme);
         localStorage.setItem("theme", theme);
     }, [theme]);
+
+    const handleSignOut = () => {
+        signOutUser()
+            .then(() => {
+                console.log('Sign out successful');
+            })
+            .catch(() => {
+                console.log('Sign out failed');
+            });
+    };
 
 
     const toggleTheme = () => {
@@ -60,6 +72,13 @@ const Navbar = () => {
                     <button onClick={toggleMenu} className="lg:hidden btn btn-ghost">
                         {isMenuOpen ? <FaTimes className="text-xl" /> : <FaBars className="text-xl" />}
                     </button>
+                    {user ? (
+                        <button onClick={handleSignOut} className="btn">
+                            Sign Out
+                        </button>
+                    ) : (
+                        <Link to="/signin" className="btn">Sign-In</Link>
+                    )}
                 </div>
             </div>
 
