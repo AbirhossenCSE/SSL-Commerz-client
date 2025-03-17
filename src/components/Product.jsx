@@ -50,7 +50,7 @@ const Product = () => {
                             <img
                                 src={product.product_image}
                                 alt={product.product_title}
-                                className="w-full p-4 h-64 object-cover"
+                                className="w-full p-4 h-72 object-cover"
                             />
                             <span className="absolute top-2 right-2 bg-orange-400 text-white px-3 py-1 text-sm font-semibold rounded">
                                 ${product.price}

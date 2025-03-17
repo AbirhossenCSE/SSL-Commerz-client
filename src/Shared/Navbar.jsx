@@ -8,7 +8,8 @@ const Navbar = () => {
     const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const { user, signOutUser } = useContext(AuthContext);
-
+    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+    
     useEffect(() => {
         document.documentElement.setAttribute("data-theme", theme);
         localStorage.setItem("theme", theme);
@@ -32,6 +33,9 @@ const Navbar = () => {
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
     };
+    const toggleDropdown = () => {
+        setIsDropdownOpen(!isDropdownOpen);
+    };
 
     const links = (
         <>
@@ -43,6 +47,14 @@ const Navbar = () => {
                     Home
                 </NavLink>
             </li>
+            <li>
+                <NavLink
+                    to="/contactUs"
+                    className={({ isActive }) => isActive ? "text-orange-400 font-bold" : ""}
+                >
+                    Contact Us
+                </NavLink>
+            </li>
         </>
     );
 
@@ -50,8 +62,7 @@ const Navbar = () => {
         <nav className="bg-base-300 shadow-md">
             <div className="container mx-auto px-5 lg:px-20 flex items-center justify-between py-3">
                 <Link to="/" className="flex items-center justify-center gap-2">
-
-                    <span className="text-2xl font-bold">MyShop</span>
+                    <span className="text-2xl font-bold">📱 SmartShop</span>
                 </Link>
 
                 {/* Desktop Links */}
@@ -67,18 +78,53 @@ const Navbar = () => {
                         {theme === "light" ? <FaMoon /> : <FiSun />}
                     </button>
 
+                    {user ? (
+                        <div className="relative">
+                            <img
+                                onClick={toggleDropdown}
+                                className="w-8 h-8 rounded-full cursor-pointer"
+                                src={user?.photoURL || 'https://via.placeholder.com/150'}
+                                alt={user?.displayName || 'User Profile'}
+                            />
+                            {isDropdownOpen && (
+                                <ul className="absolute -right-24 mt-4 w-48 bg-white rounded-lg shadow-lg z-50">
+                                    <li>
+                                        <NavLink
+                                            to="/myProfile"
+                                            className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                                            onClick={() => setIsDropdownOpen(false)}
+                                        >
+                                            My Profile
+                                        </NavLink>
+                                    </li>
+                                    <li>
+                                        <NavLink
+                                            to="/addFoods"
+                                            className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                                            onClick={() => setIsDropdownOpen(false)}
+                                        >
+                                            My Orders
+                                        </NavLink>
+                                    </li>
+                                    <li>
+                                        <NavLink 
+                                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" 
+                                        onClick={handleSignOut}
+                                        >Sign Out</NavLink>
+                                    </li>
+                                </ul>
+                            )}
+                        </div>
+                    ) : (
+                        <Link to="/signin" className="btn">Sign-In</Link>
+                    )}
+
 
                     {/* Mobile Menu Button */}
                     <button onClick={toggleMenu} className="lg:hidden btn btn-ghost">
                         {isMenuOpen ? <FaTimes className="text-xl" /> : <FaBars className="text-xl" />}
                     </button>
-                    {user ? (
-                        <button onClick={handleSignOut} className="btn">
-                            Sign Out
-                        </button>
-                    ) : (
-                        <Link to="/signin" className="btn">Sign-In</Link>
-                    )}
+
                 </div>
             </div>
 
