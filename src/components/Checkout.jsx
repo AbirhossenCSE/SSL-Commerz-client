@@ -206,7 +206,7 @@ const Checkout = () => {
                             name="email"
                             value={customer.email}
                             disabled
-                            className="border border-base-300 rounded-md px-3 py-2 w-full mb-4 bg-gray-200 cursor-not-allowed"
+                            className="border border-base-300 rounded-md px-3 py-2 w-full mb-4 bg-base-200 cursor-not-allowed"
                         />
                         <input
                             type="tel"

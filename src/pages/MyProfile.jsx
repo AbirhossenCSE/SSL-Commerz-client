@@ -31,57 +31,54 @@ const MyProfile = () => {
     }, [user?.email, axiosPublic]);
 
     return (
-        <div className="min-h-screen bg-gray-100">
+        <div className="min-h-screen bg-base-100">
             <Navbar />
-            <div className="max-w-2xl mx-auto p-6 mt-12">
-                <div className="bg-white shadow-lg rounded-xl p-8 flex flex-col items-center">
-                    <h2 className="text-3xl font-bold text-orange-500 mb-6">
-                        My Profile
-                    </h2>
+            <div className="max-w-4xl mx-auto p-6 mt-12">
+                <div className="bg-base-300 shadow-lg rounded-xl p-8 flex flex-col md:flex-row items-center md:items-start gap-8">
+                    
+                    {/* Profile Image Section */}
+                    <div className="flex-shrink-0">
+                        <img
+                            src={userData?.photoURL || "https://via.placeholder.com/150"}
+                            alt="Profile"
+                            className="w-40 h-40 rounded-full shadow-md border-4 border-orange-400 object-cover"
+                        />
+                    </div>
 
-                    {userData ? (
-                        <div className="w-full text-center">
-                            {/* Profile Image */}
-                            <div className="relative">
-                                <img
-                                    src={userData.photoURL || "https://via.placeholder.com/150"}
-                                    alt="Profile"
-                                    className="w-28 h-28 rounded-full shadow-md border-4 border-orange-400"
-                                />
-                            </div>
+                    {/* User Details Section */}
+                    <div className="flex-1 w-full">
+                        <h2 className="text-3xl font-bold text-orange-500">My Profile</h2>
 
-                            {/* User Info */}
-                            <div className="mt-5 space-y-2">
-                                <h3 className="text-2xl font-semibold text-gray-800">
-                                    {userData.name}
-                                </h3>
-                                <p className="text-gray-600 text-lg">{userData.email}</p>
-                                <p className="text-gray-500 text-sm">
+                        {userData ? (
+                            <div className="mt-5 space-y-3">
+                                <h3 className="text-2xl font-semibold">{userData.name}</h3>
+                                <p className="text-lg ">{userData.email}</p>
+                                <p className="text-sm ">
                                     Joined: {new Date(userData.createdAt).toLocaleDateString()}
                                 </p>
-                            </div>
 
-                            {/* Additional Info */}
-                            <div className="w-full mt-6 bg-gray-50 rounded-lg p-5 shadow-sm">
-                                <p className="text-gray-700 text-lg">
-                                    <strong>Phone:</strong> {userData.phone || "N/A"}
-                                </p>
-                                <p className="text-gray-700 text-lg mt-2">
-                                    <strong>Address:</strong> {userData.address || "N/A"}
-                                </p>
-                            </div>
+                                {/* Additional Info */}
+                                <div className="mt-4 p-4 rounded-lg shadow-sm">
+                                    <p className="text-lg">
+                                        <strong>Phone:</strong> {userData.phone || "N/A"}
+                                    </p>
+                                    <p className="text-lg mt-2">
+                                        <strong>Address:</strong> {userData.address || "N/A"}
+                                    </p>
+                                </div>
 
-                            {/* Update Profile Button */}
-                            <button
-                                onClick={() => navigate("/update-profile")}
-                                className="mt-6 bg-orange-500 text-white px-5 py-2 rounded-lg shadow-md hover:bg-orange-600 transition duration-300"
-                            >
-                                Update Profile
-                            </button>
-                        </div>
-                    ) : (
-                        <p className="text-gray-500 text-lg">Loading profile...</p>
-                    )}
+                                {/* Update Profile Button */}
+                                <button
+                                    onClick={() => navigate("/update-profile")}
+                                    className="mt-6 bg-orange-500 text-white px-6 py-2 rounded-lg shadow-md hover:bg-orange-600 transition duration-300"
+                                >
+                                    Update Profile
+                                </button>
+                            </div>
+                        ) : (
+                            <p className="text-gray-500 text-lg mt-4">Loading profile...</p>
+                        )}
+                    </div>
                 </div>
             </div>
         </div>
@@ -89,4 +86,3 @@ const MyProfile = () => {
 };
 
 export default MyProfile;
-

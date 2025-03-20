@@ -58,20 +58,20 @@ const UpdateProfile = () => {
     };
 
     return (
-        <div className="min-h-screen bg-gray-100">
+        <div className="min-h-screen bg-base-100">
             <Navbar />
-            <div className="max-w-lg mx-auto mt-12 bg-white shadow-lg rounded-lg p-8">
+            <div className="max-w-lg mx-auto mt-12 bg-base-300 shadow-lg rounded-lg p-8">
                 <h2 className="text-3xl font-bold text-center text-orange-500 mb-6">
                     Update Profile
                 </h2>
 
                 {loading ? (
-                    <p className="text-center text-gray-500">Loading profile...</p>
+                    <p className="text-center">Loading profile...</p>
                 ) : (
                     <form onSubmit={handleSubmit} className="flex flex-col space-y-4">
                         {/* Name Field */}
-                        <div className="flex items-center border rounded-lg p-2 bg-gray-50">
-                            <FiUser className="text-gray-500 mr-3" />
+                        <div className="flex items-center border rounded-lg p-2">
+                            <FiUser className=" mr-3" />
                             <input
                                 type="text"
                                 name="name"
@@ -84,8 +84,8 @@ const UpdateProfile = () => {
                         </div>
 
                         {/* Profile Photo URL Field */}
-                        <div className="flex items-center border rounded-lg p-2 bg-gray-50">
-                            <FiImage className="text-gray-500 mr-3" />
+                        <div className="flex items-center border rounded-lg p-2">
+                            <FiImage className=" mr-3" />
                             <input
                                 type="text"
                                 name="photoURL"
@@ -97,8 +97,8 @@ const UpdateProfile = () => {
                         </div>
 
                         {/* Phone Field */}
-                        <div className="flex items-center border rounded-lg p-2 bg-gray-50">
-                            <FiPhone className="text-gray-500 mr-3" />
+                        <div className="flex items-center border rounded-lg p-2 ">
+                            <FiPhone className=" mr-3" />
                             <input
                                 type="text"
                                 name="phone"
@@ -110,8 +110,8 @@ const UpdateProfile = () => {
                         </div>
 
                         {/* Address Field */}
-                        <div className="flex items-center border rounded-lg p-2 bg-gray-50">
-                            <FiMapPin className="text-gray-500 mr-3" />
+                        <div className="flex items-center border rounded-lg p-2">
+                            <FiMapPin className=" mr-3" />
                             <input
                                 type="text"
                                 name="address"
