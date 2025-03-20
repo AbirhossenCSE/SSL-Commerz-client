@@ -7,9 +7,9 @@ import AuthContext from "../context/AuthContext";
 const Navbar = () => {
     const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
     const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const { user, signOutUser } = useContext(AuthContext);
+    const { user, signOutUser} = useContext(AuthContext);
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-    
+
     useEffect(() => {
         document.documentElement.setAttribute("data-theme", theme);
         localStorage.setItem("theme", theme);
@@ -99,7 +99,7 @@ const Navbar = () => {
                                     </li>
                                     <li>
                                         <NavLink
-                                            to="/addFoods"
+                                            to="/myOrder"
                                             className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                                             onClick={() => setIsDropdownOpen(false)}
                                         >
