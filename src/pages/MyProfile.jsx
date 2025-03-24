@@ -36,7 +36,7 @@ const MyProfile = () => {
             <div className="max-w-4xl mx-auto p-6 mt-12">
                 <div className="bg-base-300 shadow-lg rounded-xl p-8 flex flex-col md:flex-row items-center md:items-start gap-8">
                     
-                    {/* Profile Image Section */}
+                    {/*Image Section */}
                     <div className="flex-shrink-0">
                         <img
                             src={userData?.photoURL || "https://via.placeholder.com/150"}
@@ -45,7 +45,7 @@ const MyProfile = () => {
                         />
                     </div>
 
-                    {/* User Details Section */}
+                    {/* User Details*/}
                     <div className="flex-1 w-full">
                         <h2 className="text-3xl font-bold text-orange-500">My Profile</h2>
 
@@ -57,7 +57,7 @@ const MyProfile = () => {
                                     Joined: {new Date(userData.createdAt).toLocaleDateString()}
                                 </p>
 
-                                {/* Additional Info */}
+                                {/*Info */}
                                 <div className="mt-4 p-4 rounded-lg shadow-sm">
                                     <p className="text-lg">
                                         <strong>Phone:</strong> {userData.phone || "N/A"}
@@ -67,7 +67,7 @@ const MyProfile = () => {
                                     </p>
                                 </div>
 
-                                {/* Update Profile Button */}
+                                {/* Update Profile*/}
                                 <button
                                     onClick={() => navigate("/update-profile")}
                                     className="mt-6 bg-orange-500 text-white px-6 py-2 rounded-lg shadow-md hover:bg-orange-600 transition duration-300"
